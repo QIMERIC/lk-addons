@@ -12,8 +12,8 @@
 @endif
 <h1>
 <img src="/images/avatars/{{ $user->avatar }}" style="width:125px; height:125px; float:left; border-radius:50%; margin-right:25px;">
-    {!! $user->displayName !!} 
-    
+    {!! $user->displayName !!}
+
     <small><small><a href="{{ url('reports/new?url=') . $user->url }}"><i class="fas fa-exclamation-triangle fa-xs" data-toggle="tooltip" title="Click here to report this user." style="opacity: 50%;"></i></a></small></small>
 
     @if($user->settings->is_fto)
@@ -32,6 +32,10 @@
     <div class="row">
         <div class="col-md-2 col-4"><h5>Joined</h5></div>
         <div class="col-md-10 col-8">{!! format_date($user->created_at, false) !!} ({{ $user->created_at->diffForHumans() }})</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-4"><h5>Pronouns</h5></div>
+        <div class="col-md-10 col-8">{!! $user->profile->pronouns !!}</div>
     </div>
 </div>
 
@@ -69,7 +73,7 @@
                             </div>
                         @endforeach
                     </div>
-                @else 
+                @else
                     <div>No items owned.</div>
                 @endif
             </div>
@@ -108,5 +112,5 @@
 
 @comments(['model' => $user->profile,
         'perPage' => 5
-    ])  
+    ])
 @endsection
