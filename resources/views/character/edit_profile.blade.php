@@ -32,6 +32,12 @@
         </div>
     @endif
 @endif
+
+<div class="form-group">
+    {!! Form::label('border', 'Border') !!}
+    {!! Form::select('border_id', $borders, old('border_id'), ['class' => 'form-control', 'placeholder' => 'Select Border', 'id' => 'name']) !!}
+</div>
+
 <div class="form-group">
     {!! Form::label('text', 'Profile Content') !!}
     {!! Form::textarea('text', $character->profile->text, ['class' => 'wysiwyg form-control']) !!}
@@ -55,7 +61,7 @@
             {!! Form::checkbox('is_trading', 1, $character->is_trading, ['class' => 'form-check-input', 'data-toggle' => 'toggle']) !!}
             {!! Form::label('is_trading', 'Up For Trade', ['class' => 'form-check-label ml-3']) !!} {!! add_help('This will place the character on the list of characters that are currently up for trade. This does not have any other functionality, but allow users looking for trades to find your character easily.') !!}
         </div>
-    @else 
+    @else
         <div class="alert alert-secondary">Cannot be set to "Up for Trade" as character cannot be traded or sold.</div>
     @endif
 @endif

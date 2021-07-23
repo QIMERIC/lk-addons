@@ -5,6 +5,7 @@ namespace App\Models\Character;
 use Config;
 use DB;
 use App\Models\Model;
+use App\Models\User\UserBorder;
 use App\Models\Character\CharacterCategory;
 
 class CharacterProfile extends Model
@@ -16,7 +17,7 @@ class CharacterProfile extends Model
      * @var array
      */
     protected $fillable = [
-        'character_id', 'text', 'parsed_text', 'link'
+        'character_id', 'text', 'parsed_text', 'link', 'border_id'
     ];
 
     /**

@@ -18,10 +18,16 @@ return [
         'text_color' => '#ffffff',
         'background_color' => '#f6993f'
     ],
-    
+
     'slot' => [
         'name' => 'Slot',
         'text_color' => '#ffffff',
         'background_color' => '#1fd1a7'
+    ],
+
+    'border' => [
+        'name' => 'Masterlist Border',
+        'text_color' => '#ffffff',
+        'background_color' => '#ddd'
     ],
 ];

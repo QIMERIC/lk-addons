@@ -24,6 +24,7 @@ use App\Models\Character\CharacterCurrency;
 use App\Models\Item\Item;
 use App\Models\Item\ItemCategory;
 use App\Models\User\UserItem;
+use App\Models\User\UserBorder;
 use App\Models\Character\CharacterItem;
 use App\Models\Item\ItemLog;
 
@@ -32,6 +33,7 @@ use App\Models\Character\CharacterTransfer;
 use App\Services\CurrencyManager;
 use App\Services\InventoryManager;
 use App\Services\CharacterManager;
+use App\Services\Item\BorderService;
 
 use App\Http\Controllers\Controller;
 
@@ -128,7 +130,7 @@ class CharacterController extends Controller
 
         $request->validate(CharacterProfile::$rules);
 
-        if($service->updateCharacterProfile($request->only(['name', 'link', 'text', 'is_gift_art_allowed', 'is_gift_writing_allowed', 'is_trading', 'alert_user']), $this->character, Auth::user(), !$isOwner)) {
+        if($service->updateCharacterProfile($request->only(['name', 'link', 'text', 'is_gift_art_allowed', 'is_gift_writing_allowed', 'is_trading', 'alert_user', 'border_id']), $this->character, Auth::user(), !$isOwner)) {
             flash('Profile edited successfully.')->success();
         }
         else {

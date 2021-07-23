@@ -17,6 +17,7 @@ use App\Services\InventoryManager;
 use Illuminate\Support\Arr;
 use App\Models\User\User;
 use App\Models\User\UserItem;
+use App\Models\User\UserBorder;
 use App\Models\Character\Character;
 use App\Models\Character\CharacterCurrency;
 use App\Models\Character\CharacterCategory;
@@ -1264,6 +1265,7 @@ class CharacterManager extends Service
             if(!$isAdmin)
             {
                 if($character->user_id != $user->id) throw new \Exception("You cannot edit this character.");
+                if($character->border->user_id != $user->id) throw new \Exception("This border does not belong to you.");
 
                 if($character->is_trading != isset($data['is_trading'])) $notifyTrading = true;
                 if(isset($data['is_gift_art_allowed']) && $character->is_gift_art_allowed != $data['is_gift_art_allowed']) $notifyGiftArt = true;
@@ -1284,6 +1286,7 @@ class CharacterManager extends Service
 
             $character->profile->text = $data['text'];
             $character->profile->parsed_text = parse($data['text']);
+            $character->profile->border_id = isset($data['border_id']) ? $data['border_id'] : 0;
             $character->profile->save();
 
             if($isAdmin && isset($data['alert_user']) && $character->is_visible && $character->user_id)
@@ -1725,7 +1728,8 @@ class CharacterManager extends Service
             // Reset profile
             $character->profile->update([
                 'text'        => null,
-                'parsed_text' => null
+                'parsed_text' => null,
+                'border_id' => null,
             ]);
         }
 

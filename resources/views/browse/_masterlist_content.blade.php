@@ -143,7 +143,10 @@
             @foreach($chunk as $character)
             <div class="col-md-3 col-6 text-center">
                 <div>
-                    <a href="{{ $character->url }}"><img src="{{ $character->image->thumbnailUrl }}" class="img-thumbnail" /></a>
+                    <a href="{{ $character->url }}">
+                        @if($character->profile->border_id) <img class="ml-border" src="{{ asset('images/data/items/' . $character->profile->border_id . '-image.png') }}"> @endif
+                        <img src="{{ $character->image->thumbnailUrl }}" class="img-thumbnail" />
+                    </a>
                 </div>
                 <div class="mt-1">
                     <a href="{{ $character->url }}" class="h5 mb-0">@if(!$character->is_visible) <i class="fas fa-eye-slash"></i> @endif {{ $character->fullName }}</a>
